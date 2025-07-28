@@ -36,7 +36,7 @@ public class Wordle extends JFrame{
 
         // if dictionary isn't empty
         secretWord = wordList.get(new Random().nextInt(wordList.size()));
-        System.out.println("Secret Word: " + secretWord);
+        // System.out.println("Secret Word: " + secretWord);
         
         
         // GUI Creation
@@ -164,6 +164,22 @@ public class Wordle extends JFrame{
         guessesPanel.revalidate();
         guessesPanel.repaint();
 
+        tries++;
+
+        // check winning or loosing condition
+        if(guess.equals(secretWord)){
+            messageLabel.setText("Congrats! You guessed the word!");
+            inputField.setEnabled(false);
+        }
+        else if(tries >= MAX_TRIES){
+            messageLabel.setText("Out of tries. the word was: " + secretWord);
+            inputField.setEnabled(false);
+        }
+        else{
+            messageLabel.setText(" ");
+        }
+
+        inputField.setText("");
     }
 
 }
